@@ -38,19 +38,15 @@ public class BlackJack {
         Player player = new Player("Player");
         Player croupier = new Player("Croupier");
 
-        Card croupierCard = deck.pickCard(croupier);
-        croupier.addPoints(croupierCard.getValue());
+        deck.pickCard(croupier);
 
-        Card playerCard = deck.pickCard(player);
-        player.addPoints(playerCard.getValue());
-        Card playerCard2 = deck.pickCard(player);
-        player.addPoints(playerCard2.getValue());
+        deck.pickCard(player);
+        deck.pickCard(player);
 
         while(true) {
             if (!croupier.isPass()) {
-                croupierCard = deck.pickCard(croupier);
+                deck.pickCard(croupier);
                 hideLastCard(croupier);
-                croupier.addPoints(croupierCard.getValue());
             }
 
             if (croupierPass(croupier.getPoints())) {
@@ -75,12 +71,11 @@ public class BlackJack {
 
                 switch(answer) {
                     case "Y" :  {
-                        playerCard2 = deck.pickCard(player);
-                        player.addPoints(playerCard2.getValue());
+                        deck.pickCard(player);
+
                         if(player.getPoints() > 21) {
                             while (!croupierPass(croupier.getPoints())) {
-                                Card c = deck.pickCard(croupier);
-                                croupier.addPoints(c.getValue());
+                                deck.pickCard(croupier);
                                 hideLastCard(croupier);
                             }
                             croupier.setPass(true);
@@ -91,8 +86,7 @@ public class BlackJack {
                     case "N":   {
                         if (!croupier.isPass()) {
                             while (!croupierPass(croupier.getPoints())) {
-                                Card c = deck.pickCard(croupier);
-                                croupier.addPoints(c.getValue());
+                                deck.pickCard(croupier);
                                 hideLastCard(croupier);
                             }
                             croupier.setPass(true);
@@ -106,8 +100,8 @@ public class BlackJack {
                 checkGameStatus(player,croupier);
 
                 System.out.println("*********************");
-                croupier.presentCards();
-                player.presentCards();
+                croupier.presentCardsWithPoints();
+                player.presentCardsWithPoints();
                 System.out.println("*********************");
                 System.out.println();
 

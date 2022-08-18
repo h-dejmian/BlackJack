@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class Player {
-    private ArrayList<Card> cards = new ArrayList<>();
-    private String name;
+    private final ArrayList<Card> cards = new ArrayList<>();
+    private final String name;
     private int points;
     private boolean pass = false;
 
@@ -40,6 +40,11 @@ public class Player {
     }
 
     public void presentCards() {
+        System.out.println(this.getName() + " cards: ");
+        this.showCards();
+    }
+
+    public void presentCardsWithPoints() {
         System.out.println(this.getName() + " cards: " + "(" + this.getPoints() + " points)");
         this.showCards();
     }

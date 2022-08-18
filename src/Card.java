@@ -35,10 +35,4 @@ public class Card {
     public void setHidden(boolean hidden) {
         isHidden = hidden;
     }
-
-    public boolean isHidden() {
-        return isHidden;
-    }
-
-
 }

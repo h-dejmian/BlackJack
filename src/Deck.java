@@ -33,6 +33,7 @@ public class Deck {
 
         Card card = cards.get(randomNumber);
         player.getCards().add(card);
+        player.addPoints(card.getValue());
 
         cards.remove(randomNumber);
         deckSize--;
